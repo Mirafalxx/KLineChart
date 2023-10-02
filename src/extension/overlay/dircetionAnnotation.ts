@@ -13,7 +13,6 @@
  */
 
 import { OverlayTemplate } from '../../component/Overlay'
-import { isFunction, isValid } from '../../common/utils/typeChecks'
 import { LineType } from '../../common/Options'
 
 const dircetionAnnotation: OverlayTemplate = {
@@ -31,54 +30,6 @@ const dircetionAnnotation: OverlayTemplate = {
       backgroundColor: '#1677FF'
     },
     line: { style: LineType.Dashed }
-  },
-  createPointFigures: ({ overlay, coordinates }) => {
-    let text
-    if (isValid(overlay.extendData)) {
-      if (!isFunction(overlay.extendData)) {
-        text = overlay.extendData ?? ''
-      } else {
-        text = overlay.extendData(overlay)
-      }
-    }
-    const startX = coordinates[0].x
-    const startY = coordinates[0].y - 6
-    const lineEndY = startY - 50
-    const arrowEndY = lineEndY - 5
-    return [
-      {
-        type: 'line',
-        attrs: {
-          coordinates: [
-            { x: startX, y: startY },
-            { x: startX, y: lineEndY }
-          ]
-        },
-        ignoreEvent: true
-      },
-      {
-        type: 'polygon',
-        attrs: {
-          coordinates: [
-            { x: startX, y: lineEndY },
-            { x: startX - 4, y: arrowEndY },
-            { x: startX + 4, y: arrowEndY }
-          ]
-        },
-        ignoreEvent: true
-      },
-      {
-        type: 'text',
-        attrs: {
-          x: startX,
-          y: arrowEndY,
-          text: text ?? '',
-          align: 'center',
-          baseline: 'bottom'
-        },
-        ignoreEvent: true
-      }
-    ]
   }
 }
 

@@ -5255,57 +5255,6 @@ var dircetionAnnotation = {
             backgroundColor: '#1677FF'
         },
         line: { style: exports.LineType.Dashed }
-    },
-    createPointFigures: function (_a) {
-        var _b;
-        var overlay = _a.overlay, coordinates = _a.coordinates;
-        var text;
-        if (isValid(overlay.extendData)) {
-            if (!isFunction(overlay.extendData)) {
-                text = (_b = overlay.extendData) !== null && _b !== void 0 ? _b : '';
-            }
-            else {
-                text = overlay.extendData(overlay);
-            }
-        }
-        var startX = coordinates[0].x;
-        var startY = coordinates[0].y - 6;
-        var lineEndY = startY - 50;
-        var arrowEndY = lineEndY - 5;
-        return [
-            {
-                type: 'line',
-                attrs: {
-                    coordinates: [
-                        { x: startX, y: startY },
-                        { x: startX, y: lineEndY }
-                    ]
-                },
-                ignoreEvent: true
-            },
-            {
-                type: 'polygon',
-                attrs: {
-                    coordinates: [
-                        { x: startX, y: lineEndY },
-                        { x: startX - 4, y: arrowEndY },
-                        { x: startX + 4, y: arrowEndY }
-                    ]
-                },
-                ignoreEvent: true
-            },
-            {
-                type: 'text',
-                attrs: {
-                    x: startX,
-                    y: arrowEndY,
-                    text: text !== null && text !== void 0 ? text : '',
-                    align: 'center',
-                    baseline: 'bottom'
-                },
-                ignoreEvent: true
-            }
-        ];
     }
 };
 
