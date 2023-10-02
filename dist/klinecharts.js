@@ -1034,7 +1034,7 @@ function logError(api, invalidParam, append) {
     log('%c😟 klinecharts error%c %s%s%s', 'padding:3px 4px;border-radius:2px;color:#ffffff;background-color:#EF5350;', 'color:#EF5350;', api, invalidParam, append !== null && append !== void 0 ? append : '');
 }
 function logTag() {
-    log('%c❤️ Welcome to klinecharts. Version is 9.5.4', 'border-radius:4px;border:dashed 1px #1677FF;line-height:70px;padding:0 20px;margin:16px 0;font-size:14px;color:#1677FF;', '', '', '', '');
+    log('%c❤️ hello maxim. Version is 9.5.4', 'border-radius:4px;border:dashed 1px #1677FF;line-height:70px;padding:0 20px;margin:16px 0;font-size:14px;color:#1677FF;', '', '', '', '');
 }
 
 /**
@@ -5220,13 +5220,7 @@ var simpleAnnotation = {
             },
             {
                 type: 'text',
-                attrs: {
-                    x: startX,
-                    y: arrowEndY,
-                    text: text !== null && text !== void 0 ? text : '',
-                    align: 'center',
-                    baseline: 'bottom'
-                },
+                attrs: { x: startX, y: arrowEndY, text: text !== null && text !== void 0 ? text : '', align: 'center', baseline: 'bottom' },
                 ignoreEvent: true
             }
         ];

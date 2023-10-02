@@ -69,13 +69,7 @@ const simpleAnnotation: OverlayTemplate = {
       },
       {
         type: 'text',
-        attrs: {
-          x: startX,
-          y: arrowEndY,
-          text: text ?? '',
-          align: 'center',
-          baseline: 'bottom'
-        },
+        attrs: { x: startX, y: arrowEndY, text: text ?? '', align: 'center', baseline: 'bottom' },
         ignoreEvent: true
       }
     ]
