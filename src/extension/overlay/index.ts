@@ -35,7 +35,7 @@ import verticalSegment from './verticalSegment'
 import verticalStraightLine from './verticalStraightLine'
 
 import simpleAnnotation from './simpleAnnotation'
-import directionAnnotation from './directionAnnotation'
+import directionAnnotation from './dircetionAnnotation'
 import simpleTag from './simpleTag'
 
 const overlays: Record<string, OverlayInnerConstructor> = {}

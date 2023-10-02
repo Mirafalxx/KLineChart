@@ -5246,8 +5246,8 @@ var simpleAnnotation = {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var directionAnnotation = {
-    name: 'directionAnnotation',
+var dircetionAnnotation = {
+    name: 'dircetionAnnotation',
     totalStep: 2,
     styles: {
         text: {
@@ -5260,7 +5260,7 @@ var directionAnnotation = {
             paddingBottom: 4,
             backgroundColor: '#1677FF'
         },
-        line: { style: exports.LineType.Solid }
+        line: { style: exports.LineType.Dashed }
     },
     createPointFigures: function (_a) {
         var _b;
@@ -5416,7 +5416,7 @@ var extensions$1 = [
     verticalStraightLine,
     simpleAnnotation,
     simpleTag,
-    directionAnnotation
+    dircetionAnnotation
 ];
 extensions$1.forEach(function (template) {
     overlays[template.name] = OverlayImp.extend(template);
