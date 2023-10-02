@@ -16,8 +16,8 @@ import { OverlayTemplate } from '../../component/Overlay'
 import { isFunction, isValid } from '../../common/utils/typeChecks'
 import { LineType } from '../../common/Options'
 
-const simpleAnnotation: OverlayTemplate = {
-  name: 'simpleAnnotation',
+const directionAnnotation: OverlayTemplate = {
+  name: 'directionAnnotation',
   totalStep: 2,
   styles: {
     text: {
@@ -30,7 +30,7 @@ const simpleAnnotation: OverlayTemplate = {
       paddingBottom: 4,
       backgroundColor: '#1677FF'
     },
-    line: { style: LineType.Dashed }
+    line: { style: LineType.Solid }
   },
   createPointFigures: ({ overlay, coordinates }) => {
     let text
@@ -82,4 +82,4 @@ const simpleAnnotation: OverlayTemplate = {
   }
 }
 
-export default simpleAnnotation
+export default directionAnnotation

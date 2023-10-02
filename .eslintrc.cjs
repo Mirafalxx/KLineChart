@@ -11,8 +11,10 @@ module.exports = {
   },
   extends: 'standard-with-typescript',
   plugins: ['@typescript-eslint'],
-  overrides: [
-  ],
+  overrides: [],
   rules: {
+    // Note: you must disable the base rule as it can report incorrect errors
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/space-before-function-paren': 'off'
   }
 }

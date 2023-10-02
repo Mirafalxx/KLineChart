@@ -14,7 +14,11 @@
 
 import Nullable from '../../common/Nullable'
 
-import OverlayImp, { OverlayTemplate, OverlayConstructor, OverlayInnerConstructor } from '../../component/Overlay'
+import OverlayImp, {
+  OverlayTemplate,
+  OverlayConstructor,
+  OverlayInnerConstructor
+} from '../../component/Overlay'
 
 import fibonacciLine from './fibonacciLine'
 import horizontalRayLine from './horizontalRayLine'
@@ -31,34 +35,47 @@ import verticalSegment from './verticalSegment'
 import verticalStraightLine from './verticalStraightLine'
 
 import simpleAnnotation from './simpleAnnotation'
+import directionAnnotation from './directionAnnotation'
 import simpleTag from './simpleTag'
 
 const overlays: Record<string, OverlayInnerConstructor> = {}
 
 const extensions = [
-  fibonacciLine, horizontalRayLine, horizontalSegment, horizontalStraightLine,
-  parallelStraightLine, priceChannelLine, priceLine, rayLine, segment,
-  straightLine, verticalRayLine, verticalSegment, verticalStraightLine,
-  simpleAnnotation, simpleTag
+  fibonacciLine,
+  horizontalRayLine,
+  horizontalSegment,
+  horizontalStraightLine,
+  parallelStraightLine,
+  priceChannelLine,
+  priceLine,
+  rayLine,
+  segment,
+  straightLine,
+  verticalRayLine,
+  verticalSegment,
+  verticalStraightLine,
+  simpleAnnotation,
+  simpleTag,
+  directionAnnotation
 ]
 
 extensions.forEach((template: OverlayTemplate) => {
   overlays[template.name] = OverlayImp.extend(template)
 })
 
-function registerOverlay (template: OverlayTemplate): void {
+function registerOverlay(template: OverlayTemplate): void {
   overlays[template.name] = OverlayImp.extend(template)
 }
 
-function getOverlayInnerClass (name: string): Nullable<OverlayInnerConstructor> {
+function getOverlayInnerClass(name: string): Nullable<OverlayInnerConstructor> {
   return overlays[name] ?? null
 }
 
-function getOverlayClass (name: string): Nullable<OverlayConstructor> {
+function getOverlayClass(name: string): Nullable<OverlayConstructor> {
   return overlays[name] ?? null
 }
 
-function getSupportedOverlays (): string[] {
+function getSupportedOverlays(): string[] {
   return Object.keys(overlays)
 }
 
