@@ -51,7 +51,7 @@ const dircetionAnnotation: OverlayTemplate = {
         attrs: {
           coordinates: [
             { x: startX, y: startY },
-            { x: startX, y: lineEndY }
+            { x: startX, y: lineEndY + 30 }
           ]
         },
         ignoreEvent: true
@@ -73,7 +73,7 @@ const dircetionAnnotation: OverlayTemplate = {
         type: 'text',
         attrs: {
           x: startX,
-          y: arrowEndY,
+          y: arrowEndY + 50,
           text: text ?? '',
           align: 'center',
           baseline: 'bottom'

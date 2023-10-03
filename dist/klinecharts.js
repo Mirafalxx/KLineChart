@@ -4681,7 +4681,6 @@ function getLinearSlopeIntercept(coordinate1, coordinate2) {
 }
 function drawLine(ctx, attrs, styles) {
     var coordinates = attrs.coordinates;
-    console.log(attrs);
     var length = coordinates.length;
     if (length > 1) {
         var _a = styles.style, style = _a === void 0 ? exports.LineType.Solid : _a, smooth = styles.smooth, _b = styles.size, size = _b === void 0 ? 1 : _b, _c = styles.color, color = _c === void 0 ? 'currentColor' : _c, _d = styles.dashedValue, dashedValue = _d === void 0 ? [2, 2] : _d;
@@ -4696,7 +4695,6 @@ function drawLine(ctx, attrs, styles) {
         ctx.beginPath();
         ctx.moveTo(coordinates[0].x, coordinates[0].y);
         if (smooth !== null && smooth !== void 0 ? smooth : false) {
-            console.log(smooth);
             var controlCoordinates = [];
             for (var i_1 = 1; i_1 < length - 1; i_1++) {
                 controlCoordinates = controlCoordinates.concat(getSmoothControlCoordinate([coordinates[i_1 - 1], coordinates[i_1], coordinates[i_1 + 1]]));
@@ -4710,7 +4708,6 @@ function drawLine(ctx, attrs, styles) {
         }
         else {
             for (var i = 1; i < coordinates.length; i++) {
-                console.log('else');
                 ctx.lineTo(coordinates[i].x, coordinates[i].y);
             }
         }
@@ -5288,7 +5285,7 @@ var dircetionAnnotation = {
                 attrs: {
                     coordinates: [
                         { x: startX, y: startY },
-                        { x: startX, y: lineEndY }
+                        { x: startX, y: lineEndY + 30 }
                     ]
                 },
                 ignoreEvent: true
@@ -5310,7 +5307,7 @@ var dircetionAnnotation = {
                 type: 'text',
                 attrs: {
                     x: startX,
-                    y: arrowEndY,
+                    y: arrowEndY + 50,
                     text: text !== null && text !== void 0 ? text : '',
                     align: 'center',
                     baseline: 'bottom'
@@ -7047,6 +7044,7 @@ var circle = {
     }
 };
 
+/* eslint-disable no-mixed-operators */
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -7064,8 +7062,11 @@ function checkCoordinateOnPolygon(coordinate, polygon) {
     var on = false;
     var coordinates = polygon.coordinates;
     for (var i = 0, j = coordinates.length - 1; i < coordinates.length; j = i++) {
-        if ((coordinates[i].y > coordinate.y) !== (coordinates[j].y > coordinate.y) &&
-            (coordinate.x < (coordinates[j].x - coordinates[i].x) * (coordinate.y - coordinates[i].y) / (coordinates[j].y - coordinates[i].y) + coordinates[i].x)) {
+        if (coordinates[i].y > coordinate.y !== coordinates[j].y > coordinate.y &&
+            coordinate.x <
+                ((coordinates[j].x - coordinates[i].x) * (coordinate.y - coordinates[i].y)) /
+                    (coordinates[j].y - coordinates[i].y) +
+                    coordinates[i].x) {
             on = !on;
         }
     }

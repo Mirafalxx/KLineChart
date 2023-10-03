@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +18,16 @@ import { PolygonStyle, PolygonType, LineType } from '../../common/Options'
 
 import { FigureTemplate } from '../../component/Figure'
 
-export function checkCoordinateOnPolygon (coordinate: Coordinate, polygon: PolygonAttrs): boolean {
+export function checkCoordinateOnPolygon(coordinate: Coordinate, polygon: PolygonAttrs): boolean {
   let on = false
   const coordinates = polygon.coordinates
   for (let i = 0, j = coordinates.length - 1; i < coordinates.length; j = i++) {
     if (
-      (coordinates[i].y > coordinate.y) !== (coordinates[j].y > coordinate.y) &&
-      (coordinate.x < (coordinates[j].x - coordinates[i].x) * (coordinate.y - coordinates[i].y) / (coordinates[j].y - coordinates[i].y) + coordinates[i].x)
+      coordinates[i].y > coordinate.y !== coordinates[j].y > coordinate.y &&
+      coordinate.x <
+        ((coordinates[j].x - coordinates[i].x) * (coordinate.y - coordinates[i].y)) /
+          (coordinates[j].y - coordinates[i].y) +
+          coordinates[i].x
     ) {
       on = !on
     }
@@ -31,7 +35,11 @@ export function checkCoordinateOnPolygon (coordinate: Coordinate, polygon: Polyg
   return on
 }
 
-export function drawPolygon (ctx: CanvasRenderingContext2D, attrs: PolygonAttrs, styles: Partial<PolygonStyle>): void {
+export function drawPolygon(
+  ctx: CanvasRenderingContext2D,
+  attrs: PolygonAttrs,
+  styles: Partial<PolygonStyle>
+): void {
   const { coordinates } = attrs
   const {
     style = PolygonType.Fill,
