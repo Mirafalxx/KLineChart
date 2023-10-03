@@ -22,7 +22,7 @@ const dircetionAnnotation: OverlayTemplate = {
   styles: {
     text: {
       borderSize: 1,
-      borderRadius: 2,
+      borderRadius: 10,
       borderColor: '#1677FF',
       paddingLeft: 4,
       paddingRight: 4,
@@ -47,7 +47,7 @@ const dircetionAnnotation: OverlayTemplate = {
     const arrowEndY = lineEndY - 5
     return [
       {
-        type: 'line',
+        type: 'lineg',
         attrs: {
           coordinates: [
             { x: startX, y: startY },

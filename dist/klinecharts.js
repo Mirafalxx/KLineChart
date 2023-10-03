@@ -1034,7 +1034,7 @@ function logError(api, invalidParam, append) {
     log('%c😟 klinecharts error%c %s%s%s', 'padding:3px 4px;border-radius:2px;color:#ffffff;background-color:#EF5350;', 'color:#EF5350;', api, invalidParam, append !== null && append !== void 0 ? append : '');
 }
 function logTag() {
-    log('%c❤️ hello maxim. Version is 9.5.4', 'border-radius:4px;border:dashed 1px #1677FF;line-height:70px;padding:0 20px;margin:16px 0;font-size:14px;color:#1677FF;', '', '', '', '');
+    log('%c❤️ hello maxim-upd. Version is 9.5.4', 'border-radius:4px;border:dashed 1px #1677FF;line-height:70px;padding:0 20px;margin:16px 0;font-size:14px;color:#1677FF;', '', '', '', '');
 }
 
 /**
@@ -5253,7 +5253,7 @@ var dircetionAnnotation = {
     styles: {
         text: {
             borderSize: 1,
-            borderRadius: 2,
+            borderRadius: 10,
             borderColor: '#1677FF',
             paddingLeft: 4,
             paddingRight: 4,
@@ -5281,7 +5281,7 @@ var dircetionAnnotation = {
         var arrowEndY = lineEndY - 5;
         return [
             {
-                type: 'line',
+                type: 'lineg',
                 attrs: {
                     coordinates: [
                         { x: startX, y: startY },
