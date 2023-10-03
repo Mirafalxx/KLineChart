@@ -52,7 +52,7 @@ export function drawRect(
   console.log('HEIGHT:', h)
   const {
     style = PolygonType.Fill,
-    color = 'transparent',
+    color = 'blue',
     borderSize = 1,
     borderColor = 'transparent',
     borderStyle = LineType.Solid,
