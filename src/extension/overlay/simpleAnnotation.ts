@@ -47,29 +47,36 @@ const simpleAnnotation: OverlayTemplate = {
     const arrowEndY = lineEndY - 5
     return [
       {
-        type: 'line',
+        type: 'lineg',
         attrs: {
           coordinates: [
             { x: startX, y: startY },
-            { x: startX, y: lineEndY }
+            { x: startX, y: lineEndY + 30 }
           ]
         },
         ignoreEvent: true
       },
-      {
-        type: 'polygon',
-        attrs: {
-          coordinates: [
-            { x: startX, y: lineEndY },
-            { x: startX - 4, y: arrowEndY },
-            { x: startX + 4, y: arrowEndY }
-          ]
-        },
-        ignoreEvent: true
-      },
+      // трегуольник
+      // {
+      //   type: 'polygon',
+      //   attrs: {
+      //     coordinates: [
+      //       { x: startX, y: lineEndY },
+      //       { x: startX - 4, y: arrowEndY },
+      //       { x: startX + 4, y: arrowEndY }
+      //     ]
+      //   },
+      //   ignoreEvent: true
+      // },
       {
         type: 'text',
-        attrs: { x: startX, y: arrowEndY, text: text ?? '', align: 'center', baseline: 'bottom' },
+        attrs: {
+          x: startX,
+          y: arrowEndY + 50,
+          text: text ?? '',
+          align: 'center',
+          baseline: 'bottom'
+        },
         ignoreEvent: true
       }
     ]

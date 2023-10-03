@@ -57,17 +57,17 @@ const dircetionAnnotation: OverlayTemplate = {
         ignoreEvent: true
       },
       // треугольник
-      {
-        type: 'polygon',
-        attrs: {
-          coordinates: [
-            { x: startX, y: lineEndY },
-            { x: startX - 4, y: arrowEndY },
-            { x: startX + 4, y: arrowEndY }
-          ]
-        },
-        ignoreEvent: true
-      },
+      // {
+      //   type: 'polygon',
+      //   attrs: {
+      //     coordinates: [
+      //       { x: startX, y: lineEndY },
+      //       { x: startX - 4, y: arrowEndY },
+      //       { x: startX + 4, y: arrowEndY }
+      //     ]
+      //   },
+      //   ignoreEvent: true
+      // },
       // текст внутри квадрата
       {
         type: 'text',

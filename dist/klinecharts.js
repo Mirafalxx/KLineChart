@@ -5205,29 +5205,36 @@ var simpleAnnotation = {
         var arrowEndY = lineEndY - 5;
         return [
             {
-                type: 'line',
+                type: 'lineg',
                 attrs: {
                     coordinates: [
                         { x: startX, y: startY },
-                        { x: startX, y: lineEndY }
+                        { x: startX, y: lineEndY + 30 }
                     ]
                 },
                 ignoreEvent: true
             },
-            {
-                type: 'polygon',
-                attrs: {
-                    coordinates: [
-                        { x: startX, y: lineEndY },
-                        { x: startX - 4, y: arrowEndY },
-                        { x: startX + 4, y: arrowEndY }
-                    ]
-                },
-                ignoreEvent: true
-            },
+            // трегуольник
+            // {
+            //   type: 'polygon',
+            //   attrs: {
+            //     coordinates: [
+            //       { x: startX, y: lineEndY },
+            //       { x: startX - 4, y: arrowEndY },
+            //       { x: startX + 4, y: arrowEndY }
+            //     ]
+            //   },
+            //   ignoreEvent: true
+            // },
             {
                 type: 'text',
-                attrs: { x: startX, y: arrowEndY, text: text !== null && text !== void 0 ? text : '', align: 'center', baseline: 'bottom' },
+                attrs: {
+                    x: startX,
+                    y: arrowEndY + 50,
+                    text: text !== null && text !== void 0 ? text : '',
+                    align: 'center',
+                    baseline: 'bottom'
+                },
                 ignoreEvent: true
             }
         ];
@@ -5291,17 +5298,17 @@ var dircetionAnnotation = {
                 ignoreEvent: true
             },
             // треугольник
-            {
-                type: 'polygon',
-                attrs: {
-                    coordinates: [
-                        { x: startX, y: lineEndY },
-                        { x: startX - 4, y: arrowEndY },
-                        { x: startX + 4, y: arrowEndY }
-                    ]
-                },
-                ignoreEvent: true
-            },
+            // {
+            //   type: 'polygon',
+            //   attrs: {
+            //     coordinates: [
+            //       { x: startX, y: lineEndY },
+            //       { x: startX - 4, y: arrowEndY },
+            //       { x: startX + 4, y: arrowEndY }
+            //     ]
+            //   },
+            //   ignoreEvent: true
+            // },
             // текст внутри квадрата
             {
                 type: 'text',
