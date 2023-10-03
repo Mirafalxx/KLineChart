@@ -36,6 +36,8 @@ import verticalStraightLine from './verticalStraightLine'
 
 import simpleAnnotation from './simpleAnnotation'
 import directionAnnotation from './directionAnnotation'
+import longBetAnnotation from './longBetAnnotation'
+import shortBetAnnotation from './shortBetAnnotation'
 import simpleTag from './simpleTag'
 
 const overlays: Record<string, OverlayInnerConstructor> = {}
@@ -56,7 +58,9 @@ const extensions = [
   verticalStraightLine,
   simpleAnnotation,
   simpleTag,
-  directionAnnotation
+  directionAnnotation,
+  longBetAnnotation,
+  shortBetAnnotation
 ]
 
 extensions.forEach((template: OverlayTemplate) => {

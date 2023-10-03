@@ -5338,6 +5338,174 @@ var dircetionAnnotation = {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+var longBetAnnotation = {
+    name: 'longBetAnnotation',
+    totalStep: 2,
+    styles: {
+        text: {
+            borderSize: 1,
+            borderRadius: 10,
+            borderColor: 'green',
+            paddingLeft: 4,
+            paddingRight: 4,
+            paddingTop: 4,
+            paddingBottom: 4,
+            backgroundColor: 'green'
+        },
+        line: { style: exports.LineType.Dashed }
+    },
+    createPointFigures: function (_a) {
+        var _b;
+        var overlay = _a.overlay, coordinates = _a.coordinates;
+        var text;
+        if (isValid(overlay.extendData)) {
+            if (!isFunction(overlay.extendData)) {
+                text = (_b = overlay.extendData) !== null && _b !== void 0 ? _b : '';
+            }
+            else {
+                text = overlay.extendData(overlay);
+            }
+        }
+        var startX = coordinates[0].x;
+        var startY = coordinates[0].y - 6;
+        var lineEndY = startY - 50;
+        var arrowEndY = lineEndY - 5;
+        return [
+            {
+                type: 'lineg',
+                attrs: {
+                    coordinates: [
+                        { x: startX, y: startY },
+                        { x: startX, y: lineEndY + 30 }
+                    ]
+                },
+                ignoreEvent: true
+            },
+            // треугольник
+            // {
+            //   type: 'polygon',
+            //   attrs: {
+            //     coordinates: [
+            //       { x: startX, y: lineEndY },
+            //       { x: startX - 4, y: arrowEndY },
+            //       { x: startX + 4, y: arrowEndY }
+            //     ]
+            //   },
+            //   ignoreEvent: true
+            // },
+            // текст внутри квадрата
+            {
+                type: 'text',
+                attrs: {
+                    x: startX,
+                    y: arrowEndY + 50,
+                    text: text !== null && text !== void 0 ? text : '',
+                    align: 'center',
+                    baseline: 'bottom'
+                },
+                ignoreEvent: true
+            }
+        ];
+    }
+};
+
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+
+ * http://www.apache.org/licenses/LICENSE-2.0
+
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var shortBetAnnotation = {
+    name: 'shortBetAnnotation',
+    totalStep: 2,
+    styles: {
+        text: {
+            borderSize: 1,
+            borderRadius: 10,
+            borderColor: 'red',
+            paddingLeft: 4,
+            paddingRight: 4,
+            paddingTop: 4,
+            paddingBottom: 4,
+            backgroundColor: 'red'
+        },
+        line: { style: exports.LineType.Dashed }
+    },
+    createPointFigures: function (_a) {
+        var _b;
+        var overlay = _a.overlay, coordinates = _a.coordinates;
+        var text;
+        if (isValid(overlay.extendData)) {
+            if (!isFunction(overlay.extendData)) {
+                text = (_b = overlay.extendData) !== null && _b !== void 0 ? _b : '';
+            }
+            else {
+                text = overlay.extendData(overlay);
+            }
+        }
+        var startX = coordinates[0].x;
+        var startY = coordinates[0].y - 6;
+        var lineEndY = startY - 50;
+        var arrowEndY = lineEndY - 5;
+        return [
+            {
+                type: 'lineg',
+                attrs: {
+                    coordinates: [
+                        { x: startX, y: startY },
+                        { x: startX, y: lineEndY + 30 }
+                    ]
+                },
+                ignoreEvent: true
+            },
+            // треугольник
+            // {
+            //   type: 'polygon',
+            //   attrs: {
+            //     coordinates: [
+            //       { x: startX, y: lineEndY },
+            //       { x: startX - 4, y: arrowEndY },
+            //       { x: startX + 4, y: arrowEndY }
+            //     ]
+            //   },
+            //   ignoreEvent: true
+            // },
+            // текст внутри квадрата
+            {
+                type: 'text',
+                attrs: {
+                    x: startX,
+                    y: arrowEndY + 50,
+                    text: text !== null && text !== void 0 ? text : '',
+                    align: 'center',
+                    baseline: 'bottom'
+                },
+                ignoreEvent: true
+            }
+        ];
+    }
+};
+
+/**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+
+ * http://www.apache.org/licenses/LICENSE-2.0
+
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 var simpleTag = {
     name: 'simpleTag',
     totalStep: 2,
@@ -5426,7 +5594,9 @@ var extensions$1 = [
     verticalStraightLine,
     simpleAnnotation,
     simpleTag,
-    dircetionAnnotation
+    dircetionAnnotation,
+    longBetAnnotation,
+    shortBetAnnotation
 ];
 extensions$1.forEach(function (template) {
     overlays[template.name] = OverlayImp.extend(template);
