@@ -141,6 +141,7 @@ export function drawLine(
     ctx.moveTo(coordinates[0].x, coordinates[0].y)
 
     if (smooth ?? false) {
+      console.log(smooth)
       let controlCoordinates: Coordinate[] = []
       for (let i = 1; i < length - 1; i++) {
         controlCoordinates = controlCoordinates.concat(
@@ -172,6 +173,7 @@ export function drawLine(
       )
     } else {
       for (let i = 1; i < coordinates.length; i++) {
+        console.log('else')
         ctx.lineTo(coordinates[i].x, coordinates[i].y)
       }
     }

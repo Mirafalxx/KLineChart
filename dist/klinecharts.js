@@ -4696,6 +4696,7 @@ function drawLine(ctx, attrs, styles) {
         ctx.beginPath();
         ctx.moveTo(coordinates[0].x, coordinates[0].y);
         if (smooth !== null && smooth !== void 0 ? smooth : false) {
+            console.log(smooth);
             var controlCoordinates = [];
             for (var i_1 = 1; i_1 < length - 1; i_1++) {
                 controlCoordinates = controlCoordinates.concat(getSmoothControlCoordinate([coordinates[i_1 - 1], coordinates[i_1], coordinates[i_1 + 1]]));
@@ -4709,6 +4710,7 @@ function drawLine(ctx, attrs, styles) {
         }
         else {
             for (var i = 1; i < coordinates.length; i++) {
+                console.log('else');
                 ctx.lineTo(coordinates[i].x, coordinates[i].y);
             }
         }
