@@ -4614,11 +4614,12 @@ function getSmoothControlCoordinate(coordinates) {
     var vector = [coordinates[2].x - coordinates[0].x, coordinates[2].y - coordinates[0].y];
     return [
         {
-            x: coordinates[1].x - vector[0] * 0.5 * d01 / d02,
-            y: coordinates[1].y - vector[1] * 0.5 * d01 / d02
-        }, {
-            x: coordinates[1].x + vector[0] * 0.5 * d01 / d02,
-            y: coordinates[1].y + vector[1] * 0.5 * d01 / d02
+            x: coordinates[1].x - (vector[0] * 0.5 * d01) / d02,
+            y: coordinates[1].y - (vector[1] * 0.5 * d01) / d02
+        },
+        {
+            x: coordinates[1].x + (vector[0] * 0.5 * d01) / d02,
+            y: coordinates[1].y + (vector[1] * 0.5 * d01) / d02
         }
     ];
 }
@@ -4629,7 +4630,10 @@ function checkCoordinateOnLine(coordinate, line) {
             var prevCoordinate = coordinates[i - 1];
             var currentCoordinate = coordinates[i];
             if (prevCoordinate.x === currentCoordinate.x) {
-                if (Math.abs(prevCoordinate.y - coordinate.y) + Math.abs(currentCoordinate.y - coordinate.y) - Math.abs(prevCoordinate.y - currentCoordinate.y) < DEVIATION + DEVIATION &&
+                if (Math.abs(prevCoordinate.y - coordinate.y) +
+                    Math.abs(currentCoordinate.y - coordinate.y) -
+                    Math.abs(prevCoordinate.y - currentCoordinate.y) <
+                    DEVIATION + DEVIATION &&
                     Math.abs(coordinate.x - prevCoordinate.x) < DEVIATION) {
                     return true;
                 }
@@ -4638,8 +4642,11 @@ function checkCoordinateOnLine(coordinate, line) {
                 var kb = getLinearSlopeIntercept(prevCoordinate, currentCoordinate);
                 var y = getLinearYFromSlopeIntercept(kb, coordinate);
                 var yDif = Math.abs(y - coordinate.y);
-                if (Math.abs(prevCoordinate.x - coordinate.x) + Math.abs(currentCoordinate.x - coordinate.x) - Math.abs(prevCoordinate.x - currentCoordinate.x) < DEVIATION + DEVIATION &&
-                    yDif * yDif / (kb[0] * kb[0] + 1) < DEVIATION * DEVIATION) {
+                if (Math.abs(prevCoordinate.x - coordinate.x) +
+                    Math.abs(currentCoordinate.x - coordinate.x) -
+                    Math.abs(prevCoordinate.x - currentCoordinate.x) <
+                    DEVIATION + DEVIATION &&
+                    (yDif * yDif) / (kb[0] * kb[0] + 1) < DEVIATION * DEVIATION) {
                     return true;
                 }
             }
@@ -4709,7 +4716,7 @@ function drawLine(ctx, attrs, styles) {
     }
 }
 var line = {
-    name: 'line',
+    name: 'lineg',
     checkEventOn: checkCoordinateOnLine,
     draw: function (ctx, attrs, styles) {
         drawLine(ctx, attrs, styles);

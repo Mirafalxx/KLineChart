@@ -18,27 +18,30 @@ import { SmoothLineStyle, LineType } from '../../common/Options'
 
 import { FigureTemplate, DEVIATION } from '../../component/Figure'
 
-function getDistance (coordinate1: Coordinate, coordinate2: Coordinate): number {
-  return Math.sqrt(Math.pow(coordinate1.x + coordinate2.x, 2) + Math.pow(coordinate1.y + coordinate2.y, 2))
+function getDistance(coordinate1: Coordinate, coordinate2: Coordinate): number {
+  return Math.sqrt(
+    Math.pow(coordinate1.x + coordinate2.x, 2) + Math.pow(coordinate1.y + coordinate2.y, 2)
+  )
 }
 
-function getSmoothControlCoordinate (coordinates: Coordinate[]): Coordinate[] {
+function getSmoothControlCoordinate(coordinates: Coordinate[]): Coordinate[] {
   const d01 = getDistance(coordinates[0], coordinates[1])
   const d12 = getDistance(coordinates[1], coordinates[2])
   const d02 = d01 + d12
   const vector = [coordinates[2].x - coordinates[0].x, coordinates[2].y - coordinates[0].y]
   return [
     {
-      x: coordinates[1].x - vector[0] * 0.5 * d01 / d02,
-      y: coordinates[1].y - vector[1] * 0.5 * d01 / d02
-    }, {
-      x: coordinates[1].x + vector[0] * 0.5 * d01 / d02,
-      y: coordinates[1].y + vector[1] * 0.5 * d01 / d02
+      x: coordinates[1].x - (vector[0] * 0.5 * d01) / d02,
+      y: coordinates[1].y - (vector[1] * 0.5 * d01) / d02
+    },
+    {
+      x: coordinates[1].x + (vector[0] * 0.5 * d01) / d02,
+      y: coordinates[1].y + (vector[1] * 0.5 * d01) / d02
     }
   ]
 }
 
-export function checkCoordinateOnLine (coordinate: Coordinate, line: LineAttrs): boolean {
+export function checkCoordinateOnLine(coordinate: Coordinate, line: LineAttrs): boolean {
   const coordinates = line.coordinates
   if (coordinates.length > 1) {
     for (let i = 1; i < coordinates.length; i++) {
@@ -46,7 +49,10 @@ export function checkCoordinateOnLine (coordinate: Coordinate, line: LineAttrs):
       const currentCoordinate = coordinates[i]
       if (prevCoordinate.x === currentCoordinate.x) {
         if (
-          Math.abs(prevCoordinate.y - coordinate.y) + Math.abs(currentCoordinate.y - coordinate.y) - Math.abs(prevCoordinate.y - currentCoordinate.y) < DEVIATION + DEVIATION &&
+          Math.abs(prevCoordinate.y - coordinate.y) +
+            Math.abs(currentCoordinate.y - coordinate.y) -
+            Math.abs(prevCoordinate.y - currentCoordinate.y) <
+            DEVIATION + DEVIATION &&
           Math.abs(coordinate.x - prevCoordinate.x) < DEVIATION
         ) {
           return true
@@ -56,8 +62,11 @@ export function checkCoordinateOnLine (coordinate: Coordinate, line: LineAttrs):
         const y = getLinearYFromSlopeIntercept(kb, coordinate)
         const yDif = Math.abs(y - coordinate.y)
         if (
-          Math.abs(prevCoordinate.x - coordinate.x) + Math.abs(currentCoordinate.x - coordinate.x) - Math.abs(prevCoordinate.x - currentCoordinate.x) < DEVIATION + DEVIATION &&
-          yDif * yDif / (kb[0] * kb[0] + 1) < DEVIATION * DEVIATION
+          Math.abs(prevCoordinate.x - coordinate.x) +
+            Math.abs(currentCoordinate.x - coordinate.x) -
+            Math.abs(prevCoordinate.x - currentCoordinate.x) <
+            DEVIATION + DEVIATION &&
+          (yDif * yDif) / (kb[0] * kb[0] + 1) < DEVIATION * DEVIATION
         ) {
           return true
         }
@@ -67,7 +76,10 @@ export function checkCoordinateOnLine (coordinate: Coordinate, line: LineAttrs):
   return false
 }
 
-export function getLinearYFromSlopeIntercept (kb: Nullable<number[]>, coordinate: Coordinate): number {
+export function getLinearYFromSlopeIntercept(
+  kb: Nullable<number[]>,
+  coordinate: Coordinate
+): number {
   if (kb != null) {
     return coordinate.x * kb[0] + kb[1]
   }
@@ -80,12 +92,19 @@ export function getLinearYFromSlopeIntercept (kb: Nullable<number[]>, coordinate
  * @param coordinate2
  * @param targetCoordinate
  */
-export function getLinearYFromCoordinates (coordinate1: Coordinate, coordinate2: Coordinate, targetCoordinate: Coordinate): number {
+export function getLinearYFromCoordinates(
+  coordinate1: Coordinate,
+  coordinate2: Coordinate,
+  targetCoordinate: Coordinate
+): number {
   const kb = getLinearSlopeIntercept(coordinate1, coordinate2)
   return getLinearYFromSlopeIntercept(kb, targetCoordinate)
 }
 
-export function getLinearSlopeIntercept (coordinate1: Coordinate, coordinate2: Coordinate): Nullable<number[]> {
+export function getLinearSlopeIntercept(
+  coordinate1: Coordinate,
+  coordinate2: Coordinate
+): Nullable<number[]> {
   const difX = coordinate1.x - coordinate2.x
   if (difX !== 0) {
     const k = (coordinate1.y - coordinate2.y) / difX
@@ -95,11 +114,21 @@ export function getLinearSlopeIntercept (coordinate1: Coordinate, coordinate2: C
   return null
 }
 
-export function drawLine (ctx: CanvasRenderingContext2D, attrs: LineAttrs, styles: Partial<SmoothLineStyle>): void {
+export function drawLine(
+  ctx: CanvasRenderingContext2D,
+  attrs: LineAttrs,
+  styles: Partial<SmoothLineStyle>
+): void {
   const { coordinates } = attrs
   const length = coordinates.length
   if (length > 1) {
-    const { style = LineType.Solid, smooth, size = 1, color = 'currentColor', dashedValue = [2, 2] } = styles
+    const {
+      style = LineType.Solid,
+      smooth,
+      size = 1,
+      color = 'currentColor',
+      dashedValue = [2, 2]
+    } = styles
     ctx.lineWidth = size
     ctx.strokeStyle = color
     if (style === LineType.Dashed) {
@@ -113,9 +142,16 @@ export function drawLine (ctx: CanvasRenderingContext2D, attrs: LineAttrs, style
     if (smooth ?? false) {
       let controlCoordinates: Coordinate[] = []
       for (let i = 1; i < length - 1; i++) {
-        controlCoordinates = controlCoordinates.concat(getSmoothControlCoordinate([coordinates[i - 1], coordinates[i], coordinates[i + 1]]))
+        controlCoordinates = controlCoordinates.concat(
+          getSmoothControlCoordinate([coordinates[i - 1], coordinates[i], coordinates[i + 1]])
+        )
       }
-      ctx.quadraticCurveTo(controlCoordinates[0].x, controlCoordinates[0].y, coordinates[1].x, coordinates[1].y)
+      ctx.quadraticCurveTo(
+        controlCoordinates[0].x,
+        controlCoordinates[0].y,
+        coordinates[1].x,
+        coordinates[1].y
+      )
       let i = 2
       for (; i < length - 1; i++) {
         ctx.bezierCurveTo(
@@ -148,7 +184,7 @@ export interface LineAttrs {
 }
 
 const line: FigureTemplate<LineAttrs, Partial<SmoothLineStyle>> = {
-  name: 'line',
+  name: 'lineg',
   checkEventOn: checkCoordinateOnLine,
   draw: (ctx: CanvasRenderingContext2D, attrs: LineAttrs, styles: Partial<SmoothLineStyle>) => {
     drawLine(ctx, attrs, styles)
