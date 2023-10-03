@@ -47,11 +47,14 @@ export function drawRect(
   styles: Partial<RectStyle>
 ): void {
   const { x, y, width: w, height: h } = attrs
+  console.log('drawing rect debugg')
+  console.log('WIDTH:', w)
+  console.log('HEIGHT:', h)
   const {
     style = PolygonType.Fill,
-    color = 'blue',
+    color = 'transparent',
     borderSize = 1,
-    borderColor = 'red',
+    borderColor = 'transparent',
     borderStyle = LineType.Solid,
     borderRadius: r = 0,
     borderDashedValue = [2, 2]
