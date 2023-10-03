@@ -47,9 +47,6 @@ export function drawRect(
   styles: Partial<RectStyle>
 ): void {
   const { x, y, width: w, height: h } = attrs
-  console.log('drawing rect debugg')
-  console.log('WIDTH:', w)
-  console.log('HEIGHT:', h)
   const {
     style = PolygonType.Fill,
     color = 'blue',
@@ -97,6 +94,9 @@ export function drawRect(
     ctx.closePath()
     ctx.stroke()
   }
+  console.log('drawing rect debugg')
+  console.log('WIDTH:', w)
+  console.log('HEIGHT:', h)
 }
 
 export interface RectAttrs {
