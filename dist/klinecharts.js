@@ -5302,6 +5302,7 @@ var dircetionAnnotation = {
                 },
                 ignoreEvent: true
             },
+            // текст внутри треугольника
             {
                 type: 'text',
                 attrs: {
@@ -7124,6 +7125,7 @@ function transparent(color) {
  * limitations under the License.
  */
 function checkCoordinateOnRect(coordinate, rect) {
+    console.log('checkCoordinateOnRect');
     var x = rect.x;
     var width = rect.width;
     if (width < DEVIATION * 2) {
@@ -7143,7 +7145,7 @@ function checkCoordinateOnRect(coordinate, rect) {
 }
 function drawRect(ctx, attrs, styles) {
     var x = attrs.x, y = attrs.y, w = attrs.width, h = attrs.height;
-    var _a = styles.style, style = _a === void 0 ? exports.PolygonType.Fill : _a, _b = styles.color, color = _b === void 0 ? 'blue' : _b, _c = styles.borderSize, borderSize = _c === void 0 ? 1 : _c, _d = styles.borderColor, borderColor = _d === void 0 ? 'transparent' : _d, _e = styles.borderStyle, borderStyle = _e === void 0 ? exports.LineType.Solid : _e, _f = styles.borderRadius, r = _f === void 0 ? 0 : _f, _g = styles.borderDashedValue, borderDashedValue = _g === void 0 ? [2, 2] : _g;
+    var _a = styles.style, style = _a === void 0 ? exports.PolygonType.Fill : _a, _b = styles.color, color = _b === void 0 ? 'rgba(255,255,255,0.3)' : _b, _c = styles.borderSize, borderSize = _c === void 0 ? 1 : _c, _d = styles.borderColor, borderColor = _d === void 0 ? 'transparent' : _d, _e = styles.borderStyle, borderStyle = _e === void 0 ? exports.LineType.Solid : _e, _f = styles.borderRadius, r = _f === void 0 ? 0 : _f, _g = styles.borderDashedValue, borderDashedValue = _g === void 0 ? [2, 2] : _g;
     if (style === exports.PolygonType.Fill || styles.style === exports.PolygonType.StrokeFill) {
         var draw = true;
         if (isString(color)) {
@@ -7181,9 +7183,6 @@ function drawRect(ctx, attrs, styles) {
         ctx.closePath();
         ctx.stroke();
     }
-    console.log('drawing rect debugg');
-    console.log('WIDTH:', w);
-    console.log('HEIGHT:', h);
 }
 var rect = {
     name: 'rect',

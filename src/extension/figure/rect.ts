@@ -20,6 +20,7 @@ import { isString } from '../../common/utils/typeChecks'
 import { FigureTemplate, DEVIATION } from '../../component/Figure'
 
 export function checkCoordinateOnRect(coordinate: Coordinate, rect: RectAttrs): boolean {
+  console.log('checkCoordinateOnRect')
   let x = rect.x
   let width = rect.width
   if (width < DEVIATION * 2) {
@@ -49,7 +50,7 @@ export function drawRect(
   const { x, y, width: w, height: h } = attrs
   const {
     style = PolygonType.Fill,
-    color = 'blue',
+    color = 'rgba(255,255,255,0.3)',
     borderSize = 1,
     borderColor = 'transparent',
     borderStyle = LineType.Solid,
@@ -94,9 +95,6 @@ export function drawRect(
     ctx.closePath()
     ctx.stroke()
   }
-  console.log('drawing rect debugg')
-  console.log('WIDTH:', w)
-  console.log('HEIGHT:', h)
 }
 
 export interface RectAttrs {
