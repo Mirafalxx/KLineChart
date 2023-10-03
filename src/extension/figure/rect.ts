@@ -19,7 +19,7 @@ import { isString } from '../../common/utils/typeChecks'
 
 import { FigureTemplate, DEVIATION } from '../../component/Figure'
 
-export function checkCoordinateOnRect (coordinate: Coordinate, rect: RectAttrs): boolean {
+export function checkCoordinateOnRect(coordinate: Coordinate, rect: RectAttrs): boolean {
   let x = rect.x
   let width = rect.width
   if (width < DEVIATION * 2) {
@@ -41,13 +41,17 @@ export function checkCoordinateOnRect (coordinate: Coordinate, rect: RectAttrs):
   )
 }
 
-export function drawRect (ctx: CanvasRenderingContext2D, attrs: RectAttrs, styles: Partial<RectStyle>): void {
+export function drawRect(
+  ctx: CanvasRenderingContext2D,
+  attrs: RectAttrs,
+  styles: Partial<RectStyle>
+): void {
   const { x, y, width: w, height: h } = attrs
   const {
     style = PolygonType.Fill,
-    color = 'transparent',
+    color = 'blue',
     borderSize = 1,
-    borderColor = 'transparent',
+    borderColor = 'red',
     borderStyle = LineType.Solid,
     borderRadius: r = 0,
     borderDashedValue = [2, 2]
@@ -71,7 +75,8 @@ export function drawRect (ctx: CanvasRenderingContext2D, attrs: RectAttrs, style
   }
   if (
     (style === PolygonType.Stroke || styles.style === PolygonType.StrokeFill) &&
-    (!transparent(borderColor) && borderSize >= 0)
+    !transparent(borderColor) &&
+    borderSize >= 0
   ) {
     ctx.strokeStyle = borderColor
     ctx.lineWidth = borderSize
