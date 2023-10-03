@@ -120,6 +120,7 @@ export function drawLine(
   styles: Partial<SmoothLineStyle>
 ): void {
   const { coordinates } = attrs
+  console.log(attrs)
   const length = coordinates.length
   if (length > 1) {
     const {

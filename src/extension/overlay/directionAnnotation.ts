@@ -68,7 +68,7 @@ const dircetionAnnotation: OverlayTemplate = {
         },
         ignoreEvent: true
       },
-      // текст внутри треугольника
+      // текст внутри квадрата
       {
         type: 'text',
         attrs: {

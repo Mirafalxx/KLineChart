@@ -4681,6 +4681,7 @@ function getLinearSlopeIntercept(coordinate1, coordinate2) {
 }
 function drawLine(ctx, attrs, styles) {
     var coordinates = attrs.coordinates;
+    console.log(attrs);
     var length = coordinates.length;
     if (length > 1) {
         var _a = styles.style, style = _a === void 0 ? exports.LineType.Solid : _a, smooth = styles.smooth, _b = styles.size, size = _b === void 0 ? 1 : _b, _c = styles.color, color = _c === void 0 ? 'currentColor' : _c, _d = styles.dashedValue, dashedValue = _d === void 0 ? [2, 2] : _d;
@@ -5302,7 +5303,7 @@ var dircetionAnnotation = {
                 },
                 ignoreEvent: true
             },
-            // текст внутри треугольника
+            // текст внутри квадрата
             {
                 type: 'text',
                 attrs: {
